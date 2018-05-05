@@ -1,0 +1,31 @@
+<view class="container">
+  <view class='playbtn' bindtap='toplay'>
+    <image src='../../images/guofloatframe.png'></image>
+  </view>
+  <view class='classbox'>
+    <view wx:for='{{clist}}' data-cname='{{item.text}}' wx:key="item.text" class='classlist' bindtap='toclassify'>
+      <view class='classimg'>
+        <image src='{{item.icon}}'></image>
+      </view>
+      <view class='classtext'>{{item.text}}</view>
+    </view>
+  </view>
+  <view class='indexlist'>
+    <view class='titlebox'>
+      <view class='title'>果果精选专辑</view>
+      <view class='dir'>耳朵竖起来，心灵养起来</view>
+      <view class='more' data-cname='' bindtap='toclassify'>
+        更多
+        <image src='../../images/more.png'></image>
+      </view>
+    </view>
+    <view class='list-box'>
+      <view class='list' wx:for='{{alist}}' data-aid='{{item.id}}' wx:key="item.id" data-aname='{{item.albumName}}' bindtap='toalbum'>
+        <view class='list-img'>
+          <image src='{{item.albumCoverImage}}'></image>
+        </view>
+        <view class='list-text'>{{item.albumName}}</view>
+      </view>
+    </view>
+  </view>
+</view>

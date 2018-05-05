@@ -1,0 +1,163 @@
+.scrollbox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.albumbox {
+  width: 100%;
+  height: 200rpx;
+  padding: 20rpx 0rpx;
+  box-shadow: 0rpx 0rpx 20rpx 3rpx #e1e1e1;
+}
+
+.albumimg {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 6rpx;
+  overflow: hidden;
+  box-shadow: 0rpx 0rpx 20rpx 3rpx #e1e1e1;
+  float: left;
+  margin-left: 20rpx;
+  position: relative;
+}
+
+.allplay .icon image, .cbtn image {
+  width: 100%;
+  height: 100%;
+}
+
+.albumimg image, .list .songimg image {
+  width: 98%;
+  height: 98%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto;
+}
+
+.albumInfo, .songInfo {
+  width: 510rpx;
+  height: 100%;
+  float: right;
+}
+
+.songInfo {
+  margin-left: 20rpx;
+  float: left;
+}
+
+.albumname {
+  width: 100%;
+  height: 50rpx;
+  font-size: 32rpx;
+  line-height: 50rpx;
+  color: #333;
+}
+
+.albumdir {
+  width: 100%;
+  height: 120rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  -moz-line-clamp: 3;
+  -moz-box-orient: vertical;
+  -o-line-clamp: 3;
+  -o-box-orient: vertical;
+  -ms-line-clamp: 3;
+  -ms-box-orient: vertical;
+}
+
+.listbox {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+
+.allplay {
+  width: 85%;
+  height: 44rpx;
+  padding: 20rpx 0rpx 20rpx 15%;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  color: #333;
+  position: relative;
+  border-bottom: 1rpx solid #f4f5f7;
+}
+
+.allplay .icon {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 30rpx;
+  margin: auto auto;
+}
+
+.songlist {
+  width: 100%;
+  overflow: hidden;
+}
+
+.list {
+  width: 100%;
+  padding: 20rpx 0rpx;
+  border-bottom: 1rpx solid #f4f5f7;
+  overflow: hidden;
+  position: relative;
+}
+
+.list:last-child {
+  border: none;
+}
+
+.list .songimg {
+  width: 120rpx;
+  height: 120rpx;
+  overflow: hidden;
+  border-radius: 6rpx;
+  box-shadow: 0rpx 0rpx 20rpx 3rpx #e1e1e1;
+  float: left;
+  margin-left: 20rpx;
+  position: relative;
+}
+
+.songInfo .songname {
+  width: 100%;
+  height: 80rpx;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #333;
+}
+
+.songInfo .songauthor {
+  width: 100%;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #666;
+}
+
+.cbtn {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  top: 0rpx;
+  bottom: 0rpx;
+  right: 20rpx;
+  margin: auto auto;
+}

@@ -1,0 +1,125 @@
+.scrollbox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.noshuju {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.noshuju image {
+  width: 286rpx;
+  height: 218rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto;
+}
+.allplay .icon image,.cbtn image  {
+  width: 100%;
+  height: 100%;
+}
+
+.list .songimg image {
+  width: 98%;
+  height: 98%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto;
+}
+
+.songInfo {
+  width: 510rpx;
+  margin-left: 20rpx;
+  float: left;
+}
+
+.listbox {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+
+.allplay {
+  width: 85%;
+  height: 44rpx;
+  padding: 20rpx 0rpx 20rpx 15%;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  color: #333;
+  position: relative;
+  border-bottom: 1rpx solid #f4f5f7;
+}
+
+.allplay .icon {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 30rpx;
+  margin: auto auto;
+}
+
+.songlist {
+  width: 100%;
+  overflow: hidden;
+}
+
+.list {
+  width: 100%;
+  padding: 20rpx 0rpx;
+  border-bottom: 1rpx solid #f4f5f7;
+  overflow: hidden;
+  position: relative;
+}
+
+.list .songimg {
+  width: 120rpx;
+  height: 120rpx;
+  overflow: hidden;
+  border-radius: 6rpx;
+  box-shadow: 0rpx 0rpx 20rpx 3rpx #e1e1e1;
+  float: left;
+  margin-left: 20rpx;
+  position: relative;
+}
+
+.songInfo .songname {
+  width: 100%;
+  height: 80rpx;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #333;
+}
+
+.songInfo .songauthor {
+  width: 100%;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #666;
+}
+
+.cbtn {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  top: 0rpx;
+  bottom: 0rpx;
+  right: 20rpx;
+  margin: auto auto;
+}

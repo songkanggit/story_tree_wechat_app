@@ -1,0 +1,74 @@
+.viplist {
+  width: 100%;
+  overflow: hidden;
+}
+
+.list {
+  width: 85%;
+  height: 100rpx;
+  padding-left: 15%;
+  font-size: 30rpx;
+  line-height: 100rpx;
+  color: #333;
+  border-bottom: 1rpx solid #f4f5f7;
+  position: relative;
+}
+
+.icon, .tj, .price {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto auto;
+}
+
+.icon {
+  width: 44rpx;
+  height: 44rpx;
+  left: 20rpx;
+}
+
+.tj {
+  width: 56rpx;
+  height: 30rpx;
+  left: 300rpx;
+}
+
+.icon image, .tj image {
+  display: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+.price {
+  width: 120rpx;
+  height: 48rpx;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  line-height: 48rpx;
+  color: #ff1f43;
+  text-align: center;
+  border: 1rpx solid #ff1f43;
+  right: 20rpx;
+}
+
+.price text {
+  font-size: 30rpx;
+}
+
+.selected {
+  color: #fff;
+  background: #ff1f43;
+}
+
+.paybtn {
+  width: 80%;
+  height: 88rpx;
+  margin-top: 88rpx;
+  border-radius: 6rpx;
+  background: #ff1f43;
+  font-size: 36rpx;
+  line-height: 88rpx;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0rpx 0rpx 10rpx 3rpx #e1e1e1;
+}

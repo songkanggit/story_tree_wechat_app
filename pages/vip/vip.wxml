@@ -1,0 +1,17 @@
+<view class='container'>
+  <view class='viplist'>
+    <view class='list' wx:for='{{vlist}}' wx:key="item.id">
+      <view class='icon'>
+        <image src='{{item.icon}}'></image>
+      </view>
+      {{item.text}}
+      <view class='tj' hidden='{{item.tj}}'>
+        <image src='../../images/tj.png'></image>
+      </view>
+      <view data-pid='{{item.id}}' class="price {{selected == item.id ? 'selected' : ''}}" bindtap='tab'>￥
+        <text>{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='paybtn'>微信支付</view>
+</view>

@@ -1,0 +1,53 @@
+<view class='container'>
+  <view class="bg" style="background-image:url({{sobj.melodyCoverImage}})"></view>
+  <view class='listmask' hidden='{{plstate}}'>
+    <view class='top' bindtap='hidepl'></view>
+    <view class='bottom'>
+      <view class='listbox'>
+        <scroll-view class='scrollbox' scroll-y="true" bindscrolltolower="toloadMore">
+          <view class="list {{sobj.id == item.id ? 'selected' : ''}}" wx:for='{{slist}}' data-sid='{{item.id}}' wx:key="item.id" bindtap='cplay'>{{item.melodyName}}</view>
+        </scroll-view>
+      </view>
+      <view class='closemask' bindtap='hidepl'>关闭</view>
+    </view>
+  </view>
+  <view class='play'>
+    <view class='playimgbox'>
+      <view class='playimgbg'>
+        <image src='../../images/playimgbg.png'></image>
+      </view>
+      <view class='playimg'>
+        <image class="{{pstate ? 'rotate' : ''}}" src='{{sobj.melodyCoverImage}}'></image>
+      </view>
+    </view>
+    <view class='songname'>{{sobj.melodyName}}</view>
+    <view class='contral'>
+      <slider selected-color='#ff1f43' bindchange="changeplay" max="{{totalProcessNum}}" min="0" value="{{currentProcessNum}}"></slider>
+      <view class='st'>{{currentProcess}}</view>
+      <view class='tt'>{{totalProcess}}</view>
+    </view>
+    <view class='playbb'>
+      <view data-sid='{{sobj.id}}' data-favorated='{{sobj.favorated}}' wx-if='{{sobj.favorated == true}}' class='btn collect' bindtap='tocollect'>
+        <image src='../../images/selectedxin.png'>
+        </image>
+      </view>
+      <view data-sid='{{sobj.id}}' data-favorated='{{sobj.favorated}}' wx-if='{{sobj.favorated == false}}' class='btn collect' bindtap='tocollect'>
+        <image src='../../images/xin1.png'>
+        </image>
+      </view>
+      <view class='btn prev' bindtap='prev'>
+        <image src='../../images/prev.png'></image>
+      </view>
+      <view class='btn play' bindtap='play'>
+        <image wx-if='{{pstate == true}}' src='../../images/icon-pause.png'></image>
+        <image wx-if='{{pstate == false}}' src='../../images/icon-play.png'></image>
+      </view>
+      <view class='btn next' bindtap='next'>
+        <image src='../../images/next.png'></image>
+      </view>
+      <view class='btn playlist' bindtap='showpl'>
+        <image src='../../images/playlist.png'></image>
+      </view>
+    </view>
+  </view>
+</view>

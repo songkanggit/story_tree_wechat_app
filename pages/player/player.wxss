@@ -1,0 +1,255 @@
+.scrollbox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.container {
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.play {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-position: center;
+  background-size: cover;
+  filter: blur(30rpx);
+  transform: scale(1.15);
+}
+
+.bg:after {
+  width: 100%;
+  height: 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.playimgbox {
+  width: 604rpx;
+  height: 604rpx;
+  margin: 80rpx auto 86rpx;
+  position: relative;
+}
+
+.playimgbg, .playimg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto auto;
+}
+
+.playimg {
+  width: 584rpx;
+  height: 584rpx;
+}
+
+.playimg image, .playimgbg image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto;
+}
+
+.rotate {
+  animation: rorate 18s linear 0s infinite normal;
+  -webkit-animation: rorate 18s linear 0s infinite normal;
+  -moz-animation: rorate 18s linear 0s infinite normal;
+  -o-animation: rorate 18s linear 0s infinite normal;
+  -ms-animation: rorate 18s linear 0s infinite normal;
+}
+
+@keyframes rorate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.songname {
+  width: 100%;
+  height: 42rpx;
+  font-size: 32rpx;
+  line-height: 0.42rpx;
+  text-align: center;
+  color: #fff;
+}
+
+.contral {
+  width: 710rpx;
+  padding-top: 70rpx;
+  height: 30rpx;
+  margin: 22rpx auto 44rpx;
+  position: relative;
+}
+
+.contral slider {
+  width: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto auto;
+  height: 50rpx;
+}
+
+.st, .tt {
+  width: 74rpx;
+  height: 30rpx;
+  font-size: 28rpx;
+  line-height: 30rpx;
+  text-align: center;
+  color: #fff;
+}
+
+.st {
+  float: left;
+}
+
+.tt {
+  float: right;
+}
+
+.playbb {
+  width: 750rpx;
+  height: 88rpx;
+  margin: 0rpx auto;
+}
+
+.playbb .btn {
+  width: 150rpx;
+  height: 100%;
+  position: relative;
+  float: left;
+}
+
+.playbb image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto;
+}
+
+.playbb .prev image, .playbb .next image {
+  width: 38rpx;
+  height: 46rpx;
+}
+
+.playbb .collect image, .playbb .playlist image {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.playbb .play image {
+  width: 62rpx;
+  height: 76rpx;
+}
+
+.listmask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.top, .bottom {
+  width: 100%;
+  position: relative;
+}
+
+.top {
+  height: 40%;
+}
+
+.bottom {
+  height: 60%;
+  background: #fff;
+}
+
+.closemask {
+  width: 100%;
+  height: 13%;
+  font-size: 32rpx;
+  line-height: 310%;
+  color: #ff1f43;
+  text-align: center;
+  box-shadow: -3rpx 0rpx 20rpx 0rpx #e1e1e1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.listbox {
+  width: 100%;
+  height: 87%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.listbox .list {
+  width: 100%;
+  height: 99rpx;
+  font-size: 32rpx;
+  line-height: 99rpx;
+  text-indent: 20rpx;
+  color: #333;
+  border-bottom: 1rpx solid #e1e1e1;
+}
+
+.listbox .selected {
+  color: #ff1f43;
+}

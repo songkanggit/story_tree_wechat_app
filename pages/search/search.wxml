@@ -1,0 +1,28 @@
+<view class="container">
+  <view class='search'>
+    <view class='title'>
+      故事分类
+      <view class='icon'>
+        <image src='../../images/search-icon1.png'></image>
+      </view>
+    </view>
+    <view class='listbox'>
+      <view class="list {{cselected == item.categoryName ? 'selected' : '' }}" wx:for='{{clist}}' data-cname='{{item.categoryName}}' wx:key="item.id" bindtap='toclassify'>
+        {{item.categoryName}}
+      </view>
+    </view>
+  </view>
+  <view class='search'>
+    <view class='title'>
+      专辑列表
+      <view class='icon'>
+        <image src='../../images/search-icon2.png'></image>
+      </view>
+    </view>
+    <view class='listbox'>
+      <view class="list {{aselected == item.id ? 'selected' : '' }}" wx:for='{{alist}}' data-aid='{{item.id}}' wx:key="item.id" data-aname='{{item.albumName}}' bindtap='toalbum'>
+        {{item.albumName}}
+      </view>
+    </view>
+  </view>
+</view>

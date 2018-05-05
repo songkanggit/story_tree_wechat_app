@@ -1,0 +1,111 @@
+.login {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.loginlogo {
+  width: 220rpx;
+  height: 220rpx;
+  margin: 76rpx auto 110rpx;
+}
+
+.loginbg {
+  width: 100%;
+  height: 244rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.loginlogo image, .loginbg image {
+  width: 100%;
+  height: 100%;
+}
+
+.logincon {
+  width: 630rpx;
+  overflow: hidden;
+  margin: 0rpx auto;
+}
+
+.conbox {
+  height: 86rpx;
+  border-bottom: 2rpx solid #999;
+  padding-left: 66rpx;
+  position: relative;
+}
+
+.conbox .icon {
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto auto;
+}
+
+.conbox .icon image {
+  width: 100%;
+  height: 100%;
+}
+
+.conbox input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  font-size: 28rpx;
+  line-height: 86rpx;
+  color: #333;
+}
+
+.phone {
+  width: 564rpx;
+}
+
+.phone, .tokenbox {
+  width: 100%;
+}
+
+.tokenbox {
+  height: 88rpx;
+  overflow: hidden;
+}
+
+.tokentxt {
+  width: 294rpx;
+  float: left;
+}
+
+.tokenbtn {
+  width: auto;
+  height: 56rpx;
+  margin-top: 30rpx;
+  padding: 0rpx 40rpx;
+  float: right;
+  font-size: 28rpx;
+  line-height: 56rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+  background: #ff1f43;
+}
+
+.loginbtn {
+  width: 630rpx;
+  height: 80rpx;
+  margin: 60rpx auto 0rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 80rpx;
+  color: #fff;
+  text-align: center;
+  border-radius: 10rpx;
+  background: #ff1f43;
+}

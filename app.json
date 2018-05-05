@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/search/search",
+    "pages/classify/classify",
+    "pages/albumInfo/albumInfo",
+    "pages/mine/mine",
+    "pages/mycollect/mycollect",
+    "pages/vip/vip",
+    "pages/player/player",
+    "pages/login/login"
+  ],
+  "window": {
+    "navigationBarTextStyle": "light",
+    "navigationBarTitleText": "故事树",
+    "navigationBarBackgroundColor": "#ff1f43",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#ff1f43",
+    "borderStyle": "#e1e1e1",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tbindex1.png",
+        "selectedIconPath": "images/tbindex2.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/tbmine1.png",
+        "selectedIconPath": "images/tbmine2.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "debug": true
+}

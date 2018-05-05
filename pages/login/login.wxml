@@ -1,0 +1,28 @@
+<view class="container">
+  <view class='login'>
+    <view class='loginlogo'>
+      <image src='../../images/loginlogo.png'></image>
+    </view>
+    <view class='loginbg'>
+      <image src='../../images/loginbg.png'></image>
+    </view>
+    <view class='logincon'>
+      <view class='conbox phone'>
+        <view class='icon'>
+          <image src='../../images/phone.png'></image>
+        </view>
+        <input type='number' maxlength='11' name="" placeholder="请输入手机号" auto-focus='true' value='{{mobile}}' bindinput='checkTel' />
+      </view>
+      <view class='tokenbox'>
+        <view class='conbox tokentxt'>
+          <view class='icon'>
+            <image src='../../images/token.png'></image>
+          </view>
+          <input type='number' maxlength='6' name="" placeholder="请输入验证码" value='{{token}}' bindinput='checkToken' />
+        </view>
+        <view class='tokenbtn' data-id='{{getTokenTimeid}}' bindtap='getToken'>{{tokentxt}}</view>
+      </view>
+      <view class='loginbtn' bindtap='submitToken'>登录</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,34 @@
+<view class='container'>
+  <scroll-view class='scrollbox' scroll-y="true" bindscrolltolower="loadMore">
+    <view wx-if="{{nodata == true}}" class='noshuju'>
+      <image src='../../images/noshuju.png'></image>
+    </view>
+    <view wx-if="{{nodata == false}}" class='listbox'>
+      <view class='allplay' bindtap='alltoplay'>
+        全部播放
+        <view class='icon'>
+          <image src='../../images/play2.png'></image>
+        </view>
+      </view>
+      <view class='songlist'>
+        <view class='list' wx:for='{{slist}}' data-sid='{{item.id}}' wx:key="item.id">
+          <view class='songimg'>
+            <image src='{{item.melodyCoverImage}}'></image>
+          </view>
+          <view class='songInfo' data-sid='{{item.id}}' wx:key="item.id" data-aname='{{item.melodyAlbum}}' bindtap='toplay'>
+            <view class='songname'>{{item.melodyName}}</view>
+            <view class='songauthor'>{{item.melodyArtist}}</view>
+          </view>
+          <view data-sid='{{item.id}}' data-favorated='{{item.favorated}}' wx-if='{{item.favorated == false}}' class='cbtn' bindtap='tocollect'>
+            <image src='../../images/selectxin.png'>
+            </image>
+          </view>
+          <view data-sid='{{item.id}}' data-favorated='{{item.favorated}}' wx-if='{{item.favorated == true}}' class='cbtn' bindtap='tocollect'>
+            <image src='../../images/selectedxin.png'>
+            </image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

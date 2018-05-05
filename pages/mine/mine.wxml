@@ -1,0 +1,25 @@
+<view class='container'>
+  <view class='mine-head'>
+    <view class='mine-head-bg'>
+      <image src='../../images/mine-head-bg.png'></image>
+    </view>
+    <view class='mine-head-bg1'>
+      <image src='../../images/mine-head-bg1.png'></image>
+    </view>
+    <view class='head-img'>
+      <image src='{{userInfo.avatarUrl}}'></image>
+    </view>
+    <view class='user-name'>{{userInfo.nickName}}</view>
+  </view>
+  <view class='minebox'>
+    <view class='minelist' bindtap='tomycollect'>
+      <view class='icon'>
+        <image src='../../images/cot.png'></image>
+      </view>
+      我的收藏
+      <view class='to'>
+        <image src='../../images/to.png'></image>
+      </view>
+    </view>
+  </view>
+</view>

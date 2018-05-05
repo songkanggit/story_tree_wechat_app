@@ -1,0 +1,15 @@
+<view class="container">
+  <view class='playbtn' bindtap='toplay'>
+    <image src='../../images/guofloatframe.png'></image>
+  </view>
+  <scroll-view class='scrollbox' scroll-y="true" bindscrolltolower="toloadMore">
+    <view class='list-box'>
+      <view class='list' wx:for='{{alist}}' data-aid='{{item.id}}' wx:key="item.id" data-aname='{{item.albumName}}' bindtap='toalbum'>
+        <view class='list-img'>
+          <image src='{{item.albumCoverImage}}'></image>
+        </view>
+        <view class='list-text'>{{item.albumName}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
