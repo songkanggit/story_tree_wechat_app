@@ -4,7 +4,9 @@ Page({
   data: {
     page: 1,
     slist: [],
-    sobj: {},
+    sobj: {
+      melodyCoverImage:'../../images/noimg.png'
+    },
     currentProcess: '00:00',
     currentProcessNum: 0,
     totalProcess: '00:00',
@@ -98,7 +100,9 @@ Page({
   songplay: function () {
     let that = this;
     let sobj = that.data.sobj;
-    wx.showLoading();
+    wx.showLoading({
+      title:'loading···'
+    });
     wx.getBackgroundAudioPlayerState({
       success: function (res) {
         that.setData({
@@ -111,7 +115,6 @@ Page({
         if (res.status == 1) {
           wx.pauseBackgroundAudio();
           that.setplay();
-          wx.hideLoading();
         } else {
           that.setplay();
         }

@@ -9,6 +9,7 @@ App({
     // 获取用户信息
     wx.getUserInfo({
       success: res => {
+        console.log(res)
         that.globalData.userInfo = res.userInfo
         if (that.userInfoReadyCallback) {
           that.userInfoReadyCallback(res)
@@ -18,41 +19,51 @@ App({
   },
   bindTel: function () {
     let that = this;
-    wx.login({
+    wx.getUserInfo({
+      withCredentials: true,
       success: function (res) {
-        let paras = {
-          code: res.code
-        }
-        paras = JSON.stringify(paras);
-        that.request('post', 'weixin/xcxAuthLogin.do', paras, function (res) {
-          wx.showModal({
-            title: '果果故事树',
-            content: '为提供更好的服务，请前往绑定手机号',
-            cancelText: '稍后绑定',
-            cancelColor: '#666',
-            confirmText: '去绑定',
-            confirmColor: '#ff1f43',
-            success: function (res) {
-              if (res.confirm == true) {
-                wx.navigateTo({
-                  url: '../login/login',
-                })
-              } else if (res.cancel) {
-                wx.showModal({
-                  title: '果果故事树',
-                  content: '您没有绑定手机号，数据无法同步',
-                  confirmText: '确定',
-                  confirmColor: '#ff1f43',
-                  showCancel: false,
-                  success: function (res) {
-                    if (res.confirm == true) {
-
-                    }
-                  }
-                })
-              }
+        let encryptedData = res.encryptedData;
+        let iv = res.iv;
+        wx.login({
+          success: function (res) {
+            let paras = {
+              encryptedData: encryptedData,
+              iv:iv,
+              registerPlatform: 'wx_xcx',
+              accessCode: res.code
             }
-          })
+            paras = JSON.stringify(paras);
+            that.request('post', 'sms/thirdPartyLogin.do', paras, function (res) {
+              wx.showModal({
+                title: '果果故事树',
+                content: '为提供更好的服务，请前往绑定手机号',
+                cancelText: '稍后绑定',
+                cancelColor: '#666',
+                confirmText: '去绑定',
+                confirmColor: '#ff1f43',
+                success: function (res) {
+                  if (res.confirm == true) {
+                    wx.navigateTo({
+                      url: '../login/login',
+                    })
+                  } else if (res.cancel) {
+                    wx.showModal({
+                      title: '果果故事树',
+                      content: '您没有绑定手机号，数据无法同步',
+                      confirmText: '确定',
+                      confirmColor: '#ff1f43',
+                      showCancel: false,
+                      success: function (res) {
+                        if (res.confirm == true) {
+
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            })
+          }
         })
       }
     })
@@ -96,7 +107,9 @@ App({
     }
   },
   request: function (method, rurl, paras, okcallback) {
-    wx.showLoading()
+    wx.showLoading({
+      title: 'loading···'
+    })
     let that = this;
     let timestamp = new Date().getTime();
     wx.request({

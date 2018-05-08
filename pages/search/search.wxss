@@ -56,6 +56,5 @@
 
 .selected {
   background: #ff1f43;
-  border: none;
   color: #fff;
 }
