@@ -6,7 +6,20 @@ Page({
     slist: [],
     aobj: {},
     aname: '',
-    pageSize: ''
+    pageSize: '',
+    mask: true
+  },
+  showmask: function () {
+    let that = this;
+    that.setData({
+      mask: false
+    })
+  },
+  hidemask: function () {
+    let that = this;
+    that.setData({
+      mask: true
+    })
   },
   toplay: function (e) {
     let that = this;
@@ -40,7 +53,8 @@ Page({
       let sparas = {
         page: that.data.page,
         melodyAlbum: that.data.aname,
-        accountId: wx.getStorageSync('accountId')
+        accountId: wx.getStorageSync('accountId'),
+        isPrecious: 'false'
       };
       sparas = JSON.stringify(sparas);
       let oldslist = that.data.slist;
@@ -56,18 +70,20 @@ Page({
       })
     })
   },
-  onLoad: function (options) {
+  onShow: function () {
+    let that = this;
+    let options = that.options;
     wx.setNavigationBarTitle({
       title: options.aname
     })
-    let that = this;
     that.setData({
       aname: options.aname
     })
     let sparas = {
       page: that.data.page,
       melodyAlbum: options.aname,
-      accountId: wx.getStorageSync('accountId')
+      accountId: wx.getStorageSync('accountId'),
+      isPrecious: 'false'
     };
     sparas = JSON.stringify(sparas);
     app.request('post', 'melody/queryList.do', sparas, function (res) {
@@ -91,6 +107,5 @@ Page({
         aobj: aobj
       })
     })
-  },
-
+  }
 })

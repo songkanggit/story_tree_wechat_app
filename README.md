@@ -1,2 +1,0 @@
-# story_tree_wechat_app
-康金源来完善README

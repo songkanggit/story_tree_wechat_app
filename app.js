@@ -9,7 +9,6 @@ App({
     // 获取用户信息
     wx.getUserInfo({
       success: res => {
-        console.log(res)
         that.globalData.userInfo = res.userInfo
         if (that.userInfoReadyCallback) {
           that.userInfoReadyCallback(res)
@@ -55,7 +54,6 @@ App({
                       showCancel: false,
                       success: function (res) {
                         if (res.confirm == true) {
-
                         }
                       }
                     })
@@ -76,25 +74,21 @@ App({
       wx.getSetting({
         success: function (res) {
           if (res.authSetting["scope.userInfo"]) {
+            wx.setStorageSync('getuserstate', "1");
             that.bindTel();
           } else {
+            wx.setStorageSync('getuserstate', "0");
             wx.showModal({
               title: '果果故事树',
-              content: '果果故事树申请获得你的公开信息（昵称，头像等）',
-              cancelText: '稍后设置',
+              content: '果果故事树申请获得你的公开信息（昵称，头像等）,请先授权',
+              cancelText: '取消',
               cancelColor: '#666',
-              confirmText: '去设置',
+              confirmText: '确定',
               confirmColor: '#ff1f43',
               success: function (res) {
                 if (res.confirm) {
-                  wx.openSetting({
-                    success: function (res) {
-                      if (res.authSetting["scope.userInfo"] == true) {
-                        console.log("用户已授权");
-                      } else {
-                        console.log("用户未授权");
-                      }
-                    }
+                  wx.switchTab({
+                    url: '../mine/mine',
                   })
                 }
               }
@@ -196,12 +190,12 @@ App({
   },
   globalData: {
     userInfo: {
-      nickName: '未授权',
+      nickName: '绑定果果账号',
       avatarUrl: '../../images/nologinheadimg.png'
     },
     crurl: 'https://admin.guostory.com/',
-    // crurl: 'http://10.96.155.108:8080/storytree/',
+    // crurl: 'http://10.96.155.105:8080/storytree/',
     sid: '344',
-    aname: '爬呀爬呀小乌龟',
+    aname: '爬呀爬呀小乌龟'
   }
 })

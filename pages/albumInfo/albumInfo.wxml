@@ -1,12 +1,20 @@
 <view class='container'>
   <scroll-view class='scrollbox' scroll-y="true" bindscrolltolower="toloadMore">
+    <view class='albummask' hidden='{{mask}}'>
+      <view class='mask'>
+        <view class='closemask' bindtap='hidemask'>
+          <image src='../../images/closemask.png'></image>
+        </view>
+        {{aobj.albumAbstract}}
+      </view>
+    </view>
     <view class='albumbox'>
       <view class='albumimg'>
         <image src='{{aobj.albumCoverImage}}'></image>
       </view>
       <view class='albumInfo'>
         <view class='albumname'>{{aobj.albumName}}</view>
-        <view class='albumdir'>
+        <view class='albumdir' bindtap='showmask'>
           {{aobj.albumAbstract}}
         </view>
       </view>

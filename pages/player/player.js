@@ -5,6 +5,7 @@ Page({
     page: 1,
     slist: [],
     sobj: {
+      favorated:false,
       melodyCoverImage:'../../images/noimg.png'
     },
     currentProcess: '00:00',
@@ -206,7 +207,8 @@ Page({
       let paras = {
         page: that.data.page,
         melodyAlbum: app.globalData.aname,
-        accountId: wx.getStorageSync('accountId')
+        accountId: wx.getStorageSync('accountId'),
+        isPrecious: 'false'
       };
       paras = JSON.stringify(paras);
       let oldslist = that.data.slist;
@@ -230,7 +232,8 @@ Page({
     let paras = {
       page: that.data.page,
       melodyAlbum: app.globalData.aname,
-      accountId: wx.getStorageSync('accountId')
+      accountId: wx.getStorageSync('accountId'),
+      isPrecious: 'false'
     };
     paras = JSON.stringify(paras);
     app.request('post', 'melody/queryList.do', paras, function (res) {

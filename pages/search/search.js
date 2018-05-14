@@ -26,8 +26,12 @@ Page({
       url: '../albumInfo/albumInfo?aid=' + e.currentTarget.dataset.aid + "&aname=" + e.currentTarget.dataset.aname
     })
   },
-  onLoad: function (options) {
+  onShow: function () {
     let that = this;
+    that.setData({
+      aselected: '',
+      cselected: ''
+    })
     let cparas = {
     }
     cparas = JSON.stringify(cparas);

@@ -123,6 +123,7 @@ Page({
     paras = JSON.stringify(paras);
     app.request('post', 'sms/verifyToken.do', paras, function (res) {
       wx.setStorageSync('login', true);
+      wx.setStorageSync('getuserstate', "2");
       wx.setStorageSync('accountId', res.data.data.id);
       wx.getUserInfo({
         success: function (res) {
