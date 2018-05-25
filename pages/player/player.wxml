@@ -4,9 +4,7 @@
     <view class='top' bindtap='hidepl'></view>
     <view class='bottom'>
       <view class='listbox'>
-        <scroll-view class='scrollbox' scroll-y="true" bindscrolltolower="toloadMore">
-          <view class="list {{sobj.id == item.id ? 'selected' : ''}}" wx:for='{{slist}}' data-sid='{{item.id}}' wx:key="item.id" bindtap='cplay'>{{item.melodyName}}</view>
-        </scroll-view>
+        <view class="list {{sobj.id == item.id ? 'selected' : ''}}" wx:for='{{slist}}' data-sid='{{item.id}}' wx:key="item.id" bindtap='cplay'>{{item.melodyName}}</view>
       </view>
       <view class='closemask' bindtap='hidepl'>关闭</view>
     </view>

@@ -9,7 +9,7 @@ Page({
   },
   toplay: function (e) {
     wx.navigateTo({
-      url: '../player/player?sid=' + app.globalData.sid + "&aname=" + app.globalData.aname
+      url: '../player/player?sid=' + app.globalData.sid
     })
   },
   toalbum: function (e) {
@@ -35,6 +35,11 @@ Page({
         }
         that.setData({
           alist: oldalist
+        })
+      }, function () {
+        wx.showToast({
+          title: '专辑列表加载失败',
+          icon: 'none'
         })
       })
     })
@@ -67,6 +72,11 @@ Page({
       that.setData({
         alist: alist,
         pageSize: res.data.pageSize
+      })
+    }, function () {
+      wx.showToast({
+        title: '专辑列表加载失败',
+        icon: 'none'
       })
     })
   }

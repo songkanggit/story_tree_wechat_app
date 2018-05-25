@@ -6,7 +6,6 @@
     "pages/albumInfo/albumInfo",
     "pages/mine/mine",
     "pages/mycollect/mycollect",
-    "pages/vip/vip",
     "pages/player/player",
     "pages/login/login"
   ],

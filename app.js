@@ -5,7 +5,25 @@ App({
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    wx.setStorageSync('logs', logs);
+    let paras = {
+      accountId: wx.getStorageSync('accountId'),
+      isPrecious: 'false'
+    };
+    that.request('post', 'melody/queryList.do', paras, function (res) {
+      let slist = res.data.data.melodyList;
+      for (let i = 0; i < slist.length; i++) {
+        slist[i].melodyCoverImage = that.globalData.crurl + slist[i].melodyCoverImage;
+        slist[i].melodyFilePath = that.globalData.crurl + slist[i].melodyFilePath;
+      }
+      that.globalData.sid = slist[0].id;
+      that.globalData.slist = slist;
+    }, function () {
+      wx.showToast({
+        title: '初始化播放列表加载失败',
+        icon: 'none'
+      })
+    })
     // 获取用户信息
     wx.getUserInfo({
       success: res => {
@@ -27,7 +45,7 @@ App({
           success: function (res) {
             let paras = {
               encryptedData: encryptedData,
-              iv:iv,
+              iv: iv,
               registerPlatform: 'wx_xcx',
               accessCode: res.code
             }
@@ -60,6 +78,8 @@ App({
                   }
                 }
               })
+            }, function () {
+              that.bindTel();
             })
           }
         })
@@ -100,7 +120,7 @@ App({
       that.callback();
     }
   },
-  request: function (method, rurl, paras, okcallback) {
+  request: function (method, rurl, paras, okcallback, nocallback) {
     wx.showLoading({
       title: 'loading···'
     })
@@ -112,23 +132,17 @@ App({
       method: method,
       dataType: 'json',
       success: function (res) {
+        wx.hideLoading();
         if (res.data.state == true) {
-          wx.hideLoading();
           okcallback(res);
         } else if (res.data.state == false) {
-          wx.hideLoading();
-          wx.showModal({
-            title: '提示',
-            content: '操作失败',
-            confirmColor: '#ff1f43',
-            showCancel: false
-          })
+          nocallback();
         }
       },
       fail: function (res) {
         wx.showModal({
-          title: '提示',
-          content: '服务器连接失败',
+          title: '果果故事树',
+          content: 'sorry 服务器已经离开了地球',
           confirmColor: '#ff1f43',
           showCancel: false
         })
@@ -164,14 +178,24 @@ App({
             icon: 'none'
           })
           okcallback();
+        }, function () {
+          wx.showToast({
+            title: '取消收藏失败',
+            icon: 'none'
+          })
         })
       } else if (favorated == false) {
         that.request('post', 'app/favoriteMelody/add.do', paras, function () {
           wx.showToast({
-            title: '收藏成功',
+            title: '已收藏',
             icon: 'none'
           })
           okcallback();
+        }, function () {
+          wx.showToast({
+            title: '收藏失败',
+            icon: 'none'
+          })
         })
       }
     });
@@ -180,7 +204,7 @@ App({
     if (that.data.page + 1 > that.data.pageSize) {
       that.setData({ page: that.data.page })
       wx.showToast({
-        title: '没有更多信息了',
+        title: '没有更多了',
         icon: 'none'
       })
       return false;
@@ -195,7 +219,7 @@ App({
     },
     crurl: 'https://admin.guostory.com/',
     // crurl: 'http://10.96.155.105:8080/storytree/',
-    sid: '344',
-    aname: '爬呀爬呀小乌龟'
+    sid: '',
+    slist: []
   }
 })

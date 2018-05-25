@@ -24,7 +24,7 @@ Page({
   },
   toplay: function (e) {
     wx.navigateTo({
-      url: '../player/player?sid=' + app.globalData.sid + "&aname=" + app.globalData.aname
+      url: '../player/player?sid=' + app.globalData.sid
     })
   },
   toclassify: function (e) {
@@ -56,6 +56,11 @@ Page({
       }
       that.setData({
         alist: alist
+      })
+    }, function () {
+      wx.showToast({
+        title: '首页加载失败',
+        icon: 'none'
       })
     })
   }

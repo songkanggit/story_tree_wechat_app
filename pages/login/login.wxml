@@ -20,7 +20,7 @@
           </view>
           <input type='number' maxlength='6' name="" placeholder="请输入验证码" value='{{token}}' bindinput='checkToken' />
         </view>
-        <view class='tokenbtn' data-id='{{getTokenTimeid}}' bindtap='getToken'>{{tokentxt}}</view>
+        <view class="tokenbtn {{getTokenTimeid == 1 ? 'setToken' : ''}}" data-id='{{getTokenTimeid}}' bindtap='getToken'>{{tokentxt}}</view>
       </view>
       <view class='loginbtn' bindtap='submitToken'>登录</view>
     </view>

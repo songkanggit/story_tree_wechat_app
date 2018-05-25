@@ -40,7 +40,7 @@ Page({
       that.setData({
         clist: clist
       })
-    })
+    }, function () { })
     let aparas = {
       isPrecious: 'false'
     };
@@ -50,6 +50,6 @@ Page({
       that.setData({
         alist: alist
       })
-    })
+    }, function () { })
   }
 })

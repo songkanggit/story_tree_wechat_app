@@ -1,4 +1,4 @@
-.getUserbtn{
+.getUserbtn {
   width: 100%;
   height: 100%;
   font-size: 32rpx;
@@ -11,6 +11,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .mine-head {
   width: 100%;
   height: 470rpx;

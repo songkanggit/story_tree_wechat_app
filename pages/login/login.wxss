@@ -109,3 +109,7 @@
   border-radius: 10rpx;
   background: #ff1f43;
 }
+
+.setToken{
+  background: #e5e5e5;
+}

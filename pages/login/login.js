@@ -3,7 +3,7 @@ Page({
   data: {
     phone: '',
     token: '',
-    tokentxt: '发送验证码',
+    tokentxt: '获取验证码',
     getTokenTimeid: 0
   },
   // set手机号
@@ -71,7 +71,12 @@ Page({
       paras = JSON.stringify(paras);
       app.request('post', 'sms/requestToken.do', paras, function (res) {
         wx.showToast({
-          title: '验证码获取成功',
+          title: '验证码已发送',
+          icon: 'none'
+        })
+      }, function () {
+        wx.showToast({
+          title: '验证码发送失败',
           icon: 'none'
         })
       });
@@ -82,14 +87,14 @@ Page({
     var that = this;
     if (that.data.phone.length == 0) {
       wx.showToast({
-        title: '输入手机号',
+        title: '请输入手机号',
         icon: 'none'
       })
       return false;
     }
     if (that.data.token.length == 0) {
       wx.showToast({
-        title: '输入验证码',
+        title: '请输入验证码',
         icon: 'none'
       })
       return false;
@@ -130,6 +135,11 @@ Page({
           app.globalData.userInfo = res.userInfo;
           wx.navigateBack(1);
         }
+      })
+    }, function () {
+      wx.showToast({
+        title: '登录失败，请重新登录',
+        icon: 'none'
       })
     });
   }

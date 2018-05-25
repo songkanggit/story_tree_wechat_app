@@ -26,7 +26,8 @@
   bottom: 0;
   margin: auto auto;
 }
-.allplay .icon image,.cbtn image  {
+
+.allplay .icon image, .cbtn image {
   width: 100%;
   height: 100%;
 }

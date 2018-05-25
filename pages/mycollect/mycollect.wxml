@@ -1,5 +1,5 @@
 <view class='container'>
-  <scroll-view class='scrollbox' scroll-y="true" bindscrolltolower="loadMore">
+  <scroll-view class='scrollbox' scroll-y="true" bindscrolltolower="loadMore" >
     <view wx-if="{{nodata == true}}" class='noshuju'>
       <image src='../../images/noshuju.png'></image>
     </view>
@@ -15,7 +15,7 @@
           <view class='songimg'>
             <image src='{{item.melodyCoverImage}}'></image>
           </view>
-          <view class='songInfo' data-sid='{{item.id}}' wx:key="item.id" data-aname='{{item.melodyAlbum}}' bindtap='toplay'>
+          <view class='songInfo' data-sid='{{item.id}}' wx:key="item.id" bindtap='toplay'>
             <view class='songname'>{{item.melodyName}}</view>
             <view class='songauthor'>{{item.melodyArtist}}</view>
           </view>

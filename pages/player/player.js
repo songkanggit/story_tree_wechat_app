@@ -5,8 +5,7 @@ Page({
     page: 1,
     slist: [],
     sobj: {
-      favorated:false,
-      melodyCoverImage:'../../images/noimg.png'
+      melodyCoverImage: '../../images/noimg.png'
     },
     currentProcess: '00:00',
     currentProcessNum: 0,
@@ -14,17 +13,24 @@ Page({
     totalProcessNum: 0,
     canSlider: false,
     pstate: false,
-    plstate: true,
-    pageSize: ''
+    plstate: true
   },
   tocollect: function (e) {
     let that = this;
     app.collect(e, function () {
       let sobj = that.data.sobj;
+      let slist = that.data.slist;
+      for (let i = 0; i < slist.length; i++) {
+        if (app.globalData.sid == slist[i].id) {
+          slist[i].favorated = !slist[i].favorated
+        }
+      }
       sobj.favorated = !sobj.favorated;
       that.setData({
-        sobj: sobj
+        sobj: sobj,
+        slist: slist
       })
+      app.globalData.slist = slist;
     });
   },
   rtime: function (duration) {
@@ -102,7 +108,7 @@ Page({
     let that = this;
     let sobj = that.data.sobj;
     wx.showLoading({
-      title:'loading···'
+      title: 'loading···'
     });
     wx.getBackgroundAudioPlayerState({
       success: function (res) {
@@ -201,57 +207,20 @@ Page({
       plstate: true
     })
   },
-  toloadMore: function () {
-    let that = this;
-    app.loadMore(that, function () {
-      let paras = {
-        page: that.data.page,
-        melodyAlbum: app.globalData.aname,
-        accountId: wx.getStorageSync('accountId'),
-        isPrecious: 'false'
-      };
-      paras = JSON.stringify(paras);
-      let oldslist = that.data.slist;
-      app.request('post', 'melody/queryList.do', paras, function (res) {
-        let slist = res.data.data.melodyList;
-        for (let i = 0; i < slist.length; i++) {
-          slist[i].melodyCoverImage = crurl + slist[i].melodyCoverImage;
-          slist[i].melodyFilePath = crurl + slist[i].melodyFilePath;
-          oldslist.push(slist[i]);
-        }
-        that.setData({
-          slist: oldslist
-        })
-      })
-    })
-  },
   onLoad: function (options) {
     let that = this;
     app.globalData.sid = options.sid;
-    app.globalData.aname = options.aname;
-    let paras = {
-      page: that.data.page,
-      melodyAlbum: app.globalData.aname,
-      accountId: wx.getStorageSync('accountId'),
-      isPrecious: 'false'
-    };
-    paras = JSON.stringify(paras);
-    app.request('post', 'melody/queryList.do', paras, function (res) {
-      let slist = res.data.data.melodyList;
-      for (let i = 0; i < slist.length; i++) {
-        slist[i].melodyCoverImage = crurl + slist[i].melodyCoverImage;
-        slist[i].melodyFilePath = crurl + slist[i].melodyFilePath;
-        if (app.globalData.sid == slist[i].id) {
-          that.setData({
-            sobj: slist[i]
-          })
-          that.songplay()
-        }
-      }
-      that.setData({
-        slist: slist,
-        pageSize: res.data.pageSize
-      })
+    let slist = app.globalData.slist;
+    that.setData({
+      slist: slist
     })
+    for (let i = 0; i < slist.length; i++) {
+      if (app.globalData.sid == slist[i].id) {
+        that.setData({
+          sobj: slist[i]
+        })
+        that.songplay();
+      }
+    }
   }
 })
