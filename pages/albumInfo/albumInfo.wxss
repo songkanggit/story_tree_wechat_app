@@ -183,6 +183,9 @@
   font-size: 32rpx;
   line-height: 80rpx;
   color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .songInfo .songauthor {

@@ -51,6 +51,7 @@
   padding: 2rpx;
   border-radius: 50%;
   overflow: hidden;
+  border:6rpx solid #fff;
 }
 
 .head-img image {

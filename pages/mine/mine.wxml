@@ -10,10 +10,9 @@
       <image src='{{userInfo.avatarUrl}}'></image>
     </view>
     <view class='user-name' wx-if='{{getuserstate == 0}}'>
-      <button class='getUserbtn' open-type="getUserInfo" bindgetuserinfo='getuserinfo'>授权</button>
+      <button class='getUserbtn' open-type="getUserInfo" bindgetuserinfo='getuserinfo'>{{userInfo.nickName}}</button>
     </view>
-    <view class='user-name' wx-if='{{getuserstate == 1}}' bindtap='toLogin'>{{userInfo.nickName}}</view>
-    <view class='user-name' wx-if='{{getuserstate == 2}}'>{{userInfo.nickName}}</view>
+    <view class='user-name' wx-if='{{getuserstate == 1}}'>{{userInfo.nickName}}</view>
   </view>
   <view class='minebox'>
     <view class='minelist' bindtap='tomycollect'>

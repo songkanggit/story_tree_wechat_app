@@ -2,7 +2,7 @@ var app = getApp();
 Page({
   data: {
     userInfo: {
-      nickName: '绑定果果账号',
+      nickName: '授权',
       avatarUrl: '../../images/nologinheadimg.png',
     },
     getuserstate: null
@@ -10,14 +10,8 @@ Page({
   getuserinfo: function (e) {
     let that = this;
     if (e.detail.errMsg == "getUserInfo:ok") {
-      wx.setStorageSync('getuserstate', "1");
       that.onShow();
     }
-  },
-  toLogin: function () {
-    app.toLogin(function () {
-
-    })
   },
   tomycollect: function () {
     app.toLogin(function () {

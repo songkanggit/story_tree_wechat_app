@@ -34,7 +34,7 @@ App({
       }
     })
   },
-  bindTel: function () {
+  bindTel: function (callback) {
     let that = this;
     wx.getUserInfo({
       withCredentials: true,
@@ -51,35 +51,17 @@ App({
             }
             paras = JSON.stringify(paras);
             that.request('post', 'sms/thirdPartyLogin.do', paras, function (res) {
-              wx.showModal({
-                title: '果果故事树',
-                content: '为提供更好的服务，请前往绑定手机号',
-                cancelText: '稍后绑定',
-                cancelColor: '#666',
-                confirmText: '去绑定',
-                confirmColor: '#ff1f43',
+              wx.setStorageSync('login', true);
+              wx.setStorageSync('getuserstate', "1");
+              wx.setStorageSync('accountId', res.data.data.id);
+              wx.getUserInfo({
                 success: function (res) {
-                  if (res.confirm == true) {
-                    wx.navigateTo({
-                      url: '../login/login',
-                    })
-                  } else if (res.cancel) {
-                    wx.showModal({
-                      title: '果果故事树',
-                      content: '您没有绑定手机号，数据无法同步',
-                      confirmText: '确定',
-                      confirmColor: '#ff1f43',
-                      showCancel: false,
-                      success: function (res) {
-                        if (res.confirm == true) {
-                        }
-                      }
-                    })
-                  }
+                  that.globalData.userInfo = res.userInfo;
+                  that.toLogin(callback);
                 }
               })
             }, function () {
-              that.bindTel();
+              that.bindTel(callback);
             })
           }
         })
@@ -88,19 +70,17 @@ App({
   },
   toLogin: function (callback) {
     let that = this;
-    that.callback = callback;
     let login = wx.getStorageSync('login');
     if (login == '') {
       wx.getSetting({
         success: function (res) {
           if (res.authSetting["scope.userInfo"]) {
-            wx.setStorageSync('getuserstate', "1");
-            that.bindTel();
+            that.bindTel(callback);
           } else {
             wx.setStorageSync('getuserstate', "0");
             wx.showModal({
-              title: '果果故事树',
-              content: '果果故事树申请获得你的公开信息（昵称，头像等）,请先授权',
+              title: '故事树',
+              content: '故事树申请获得你的公开信息（昵称，头像等）,请先授权',
               cancelText: '取消',
               cancelColor: '#666',
               confirmText: '确定',
@@ -117,7 +97,7 @@ App({
         }
       })
     } else {
-      that.callback();
+      callback();
     }
   },
   request: function (method, rurl, paras, okcallback, nocallback) {
@@ -141,7 +121,7 @@ App({
       },
       fail: function (res) {
         wx.showModal({
-          title: '果果故事树',
+          title: '故事树',
           content: 'sorry 服务器已经离开了地球',
           confirmColor: '#ff1f43',
           showCancel: false
@@ -174,7 +154,7 @@ App({
       if (favorated == true) {
         that.request('post', 'app/favoriteMelody/delete.do', paras, function () {
           wx.showToast({
-            title: '已取消收藏',
+            title: '取消收藏',
             icon: 'none'
           })
           okcallback();
@@ -214,11 +194,11 @@ App({
   },
   globalData: {
     userInfo: {
-      nickName: '绑定果果账号',
+      nickName: '故事树',
       avatarUrl: '../../images/nologinheadimg.png'
     },
     crurl: 'https://admin.guostory.com/',
-    // crurl: 'http://10.96.155.105:8080/storytree/',
+    // crurl: 'http://192.168.0.105:8080/storytree/',
     sid: '',
     slist: []
   }

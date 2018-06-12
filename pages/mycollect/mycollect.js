@@ -43,22 +43,22 @@ Page({
     app.loadMore(that, function () {
       let sparas = {
         page: that.data.page,
-        accountId: wx.getStorageSync('accountId'),
-        isPrecious: 'false'
+        accountId: wx.getStorageSync('accountId')
       };
       sparas = JSON.stringify(sparas);
       let oldslist = that.data.slist;
       app.request('post', 'app/favoriteMelody/queryList.do', sparas, function (res) {
         let slist = res.data.data;
         for (let i = 0; i < slist.length; i++) {
-          slist[i].melodyCoverImage = crurl + slist[i].melodyCoverImage;
-          slist[i].melodyFilePath = crurl + slist[i].melodyFilePath;
-          oldslist.push(slist[i]);
+          if (slist[i].melodyPrecious == false) {
+            slist[i].melodyCoverImage = crurl + slist[i].melodyCoverImage;
+            slist[i].melodyFilePath = crurl + slist[i].melodyFilePath;
+            oldslist.push(slist[i]);
+          }
         }
         that.setData({
           slist: oldslist
         })
-        app.globalData.slist = oldslist;
       }, function () {
         wx.showToast({
           title: '曲目列表加载失败',
@@ -69,10 +69,12 @@ Page({
   },
   onShow: function () {
     let that = this;
+    that.setData({
+      page: 1
+    })
     let sparas = {
       page: that.data.page,
-      accountId: wx.getStorageSync('accountId'),
-      isPrecious: 'false'
+      accountId: wx.getStorageSync('accountId')
     };
     sparas = JSON.stringify(sparas);
     let slist = [];
@@ -84,9 +86,11 @@ Page({
         })
       } else {
         for (let i = 0; i < cdata.length; i++) {
-          cdata[i].melodyCoverImage = crurl + cdata[i].melodyCoverImage;
-          cdata[i].melodyFilePath = crurl + cdata[i].melodyFilePath;
-          slist.push(cdata[i]);
+          if (cdata[i].melodyPrecious == false) {
+            cdata[i].melodyCoverImage = crurl + cdata[i].melodyCoverImage;
+            cdata[i].melodyFilePath = crurl + cdata[i].melodyFilePath;
+            slist.push(cdata[i]);
+          }
         }
         that.setData({
           nodata: false,
