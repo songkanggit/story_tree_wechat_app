@@ -113,9 +113,9 @@ App({
       dataType: 'json',
       success: function (res) {
         wx.hideLoading();
-        if (res.data.state == true) {
+        if (res.data.state == true || res.data.code == '0000') {
           okcallback(res);
-        } else if (res.data.state == false) {
+        } else if (res.data.state == false || res.data.code != '0000') {
           nocallback();
         }
       },
