@@ -1,5 +1,5 @@
 <view class='container'>
-  <view class="bg" style="background-image:url({{sobj.melodyCoverImage}})"></view>
+   <image class="bg" src='{{sobj.melodyCoverImage}}'></image>
   <view class='listmask' hidden='{{plstate}}'>
     <view class='top' bindtap='hidepl'></view>
     <view class='bottom'>

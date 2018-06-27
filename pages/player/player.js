@@ -15,9 +15,9 @@ Page({
     pstate: false,
     plstate: true
   },
-  tocollect: function (e) {
+  tocollect: function(e) {
     let that = this;
-    app.collect(e, function () {
+    app.collect(e, function() {
       let sobj = that.data.sobj;
       let slist = that.data.slist;
       for (let i = 0; i < slist.length; i++) {
@@ -33,31 +33,31 @@ Page({
       app.globalData.slist = slist;
     });
   },
-  rtime: function (duration) {
+  rtime: function(duration) {
     let str = '';
     let minute = parseInt(duration / 60) < 10 ? ('0' + parseInt(duration / 60)) : (parseInt(duration / 60));
     let second = duration % 60 < 10 ? ('0' + parseInt(duration % 60)) : (parseInt(duration % 60));
     str = minute + ':' + second;
     return str;
   },
-  setplay: function () {
+  setplay: function() {
     let that = this;
     let sobj = that.data.sobj;
     wx.playBackgroundAudio({
       dataUrl: sobj.melodyFilePath,
       title: sobj.melodyName,
       coverImgUrl: sobj.melodyCoverImage,
-      success: function (res) {
+      success: function(res) {
         that.showPro();
         wx.hideLoading();
-        wx.onBackgroundAudioPlay(function () {
+        wx.onBackgroundAudioPlay(function() {
           that.showPro();
           wx.hideLoading();
         });
       }
     });
   },
-  play: function () {
+  play: function() {
     let that = this;
     let sobj = that.data.sobj;
     if (that.data.pstate == true) {
@@ -66,11 +66,11 @@ Page({
       that.setplay();
     };
   },
-  showPro: function () {
+  showPro: function() {
     let that = this;
-    let inv = setInterval(function () {
+    let inv = setInterval(function() {
       wx.getBackgroundAudioPlayerState({
-        success: function (res) {
+        success: function(res) {
           if (res.status == 1) {
             that.setData({
               currentProcessNum: res.currentPosition,
@@ -81,6 +81,14 @@ Page({
             })
             that.autoplay();
           } else if (res.status == 2) {
+            clearInterval(inv);
+            that.setData({
+              currentProcessNum: 0,
+              currentProcess: "00:00",
+              totalProcessNum: 0,
+              totalProcess: "00:00",
+              pstate: false
+            })
             that.showPro();
           } else {
             that.setData({
@@ -89,50 +97,52 @@ Page({
             clearInterval(inv);
           }
         },
-        fail: function () {
+        fail: function() {
           console.log("播放状态获取失败");
+          clearInterval(inv);
+          that.setData({
+            currentProcessNum: 0,
+            currentProcess: "00:00",
+            totalProcessNum: 0,
+            totalProcess: "00:00",
+            pstate: false
+          })
+          that.showPro();
         }
       });
     }, 1000);
   },
-  changeplay: function (e) {
-    console.log();
+  changeplay: function(e) {
     wx.seekBackgroundAudio({
       position: e.detail.value,
-      success: function () {
+      success: function() {
         console.log("控制音乐播放秒数为" + e.detail.value + "s")
       }
     })
   },
-  songplay: function () {
+  songplay: function() {
     let that = this;
     let sobj = that.data.sobj;
     wx.showLoading({
       title: 'loading···'
     });
     wx.getBackgroundAudioPlayerState({
-      success: function (res) {
-        that.setData({
-          currentProcessNum: res.currentPosition,
-          currentProcess: that.rtime(res.currentPosition),
-          totalProcessNum: res.duration,
-          totalProcess: that.rtime(res.duration),
-          pstate: true
-        })
+      success: function(res) {
         if (res.status == 1) {
           wx.pauseBackgroundAudio();
           that.setplay();
         } else {
+          wx.stopBackgroundAudio();
           that.setplay();
         }
       },
-      fail: function () {
+      fail: function() {
         wx.stopBackgroundAudio();
         that.setplay();
       }
     })
   },
-  prev: function () {
+  prev: function() {
     let that = this;
     let slist = that.data.slist;
     for (let i = 0; i < slist.length; i++) {
@@ -153,7 +163,7 @@ Page({
       }
     }
   },
-  next: function () {
+  next: function() {
     let that = this;
     let slist = that.data.slist;
     for (let i = 0; i < slist.length; i++) {
@@ -174,7 +184,7 @@ Page({
       }
     }
   },
-  cplay: function (e) {
+  cplay: function(e) {
     let that = this;
     let slist = that.data.slist;
     app.globalData.sid = e.currentTarget.dataset.sid;
@@ -189,32 +199,30 @@ Page({
     }
 
   },
-  autoplay: function () {
+  autoplay: function() {
     let that = this;
     if (that.data.currentProcessNum == that.data.totalProcessNum) {
       that.next();
     }
   },
-  showpl: function () {
+  showpl: function() {
     let that = this;
     that.setData({
       plstate: false
     })
   },
-  hidepl: function () {
+  hidepl: function() {
     let that = this;
     that.setData({
       plstate: true
     })
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     let that = this;
     app.globalData.sid = options.sid;
     let slist = app.globalData.slist;
-    that.setData({
-      slist: slist
-    })
     for (let i = 0; i < slist.length; i++) {
+      slist[i].melodyCoverImage = slist[i].melodyCoverImage.split("?")[0] + "?imageView2/1/w/422/h/422/q/40|imageslim";
       if (app.globalData.sid == slist[i].id) {
         that.setData({
           sobj: slist[i]
@@ -222,5 +230,8 @@ Page({
         that.songplay();
       }
     }
+    that.setData({
+      slist: slist
+    })
   }
 })

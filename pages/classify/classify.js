@@ -1,5 +1,6 @@
 var app = getApp();
 var crurl = app.globalData.crurl;
+var imgrurl = app.globalData.imgrurl;
 Page({
   data: {
     page: 1,
@@ -7,19 +8,19 @@ Page({
     cname: '',
     paeSize: ''
   },
-  toplay: function (e) {
+  toplay: function(e) {
     wx.navigateTo({
       url: '../player/player?sid=' + app.globalData.sid
     })
   },
-  toalbum: function (e) {
+  toalbum: function(e) {
     wx.navigateTo({
       url: '../albumInfo/albumInfo?aid=' + e.currentTarget.dataset.aid + "&aname=" + e.currentTarget.dataset.aname
     })
   },
-  toloadMore: function () {
+  toloadMore: function() {
     let that = this;
-    app.loadMore(that, function () {
+    app.loadMore(that, function() {
       let paras = {
         page: that.data.page,
         albumTag: that.data.cname,
@@ -27,16 +28,16 @@ Page({
       };
       paras = JSON.stringify(paras);
       let oldalist = that.data.alist;
-      app.request('post', 'album/queryList.do', paras, function (res) {
+      app.request('post', 'album/queryList.do', paras, function(res) {
         let alist = res.data.data
         for (let i = 0; i < alist.length; i++) {
-          alist[i].albumCoverImage = crurl + alist[i].albumCoverImage;
+          alist[i].albumCoverImage = imgrurl + alist[i].albumCoverImage + "?imageView2/2/w/366/h/366|imageslim";
           oldalist.push(alist[i]);
         }
         that.setData({
           alist: oldalist
         })
-      }, function () {
+      }, function() {
         wx.showToast({
           title: '专辑列表加载失败',
           icon: 'none'
@@ -44,7 +45,7 @@ Page({
       })
     })
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     if (options.cname == '') {
       wx.setNavigationBarTitle({
         title: '更多专辑'
@@ -64,16 +65,16 @@ Page({
       isPrecious: 'false'
     };
     paras = JSON.stringify(paras);
-    app.request('post', 'album/queryList.do', paras, function (res) {
+    app.request('post', 'album/queryList.do', paras, function(res) {
       let alist = res.data.data
       for (let i = 0; i < alist.length; i++) {
-        alist[i].albumCoverImage = crurl + alist[i].albumCoverImage;
+        alist[i].albumCoverImage = imgrurl + alist[i].albumCoverImage + "?imageView2/2/w/366/h/366|imageslim";
       }
       that.setData({
         alist: alist,
         pageSize: res.data.pageSize
       })
-    }, function () {
+    }, function() {
       wx.showToast({
         title: '专辑列表加载失败',
         icon: 'none'

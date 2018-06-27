@@ -1,5 +1,7 @@
 var app = getApp();
 var crurl = app.globalData.crurl;
+var imgrurl = app.globalData.imgrurl;
+var videorurl = app.globalData.videorurl;
 Page({
   data: {
     page: 1,
@@ -9,35 +11,35 @@ Page({
     pageSize: '',
     mask: true
   },
-  showmask: function () {
+  showmask: function() {
     let that = this;
     that.setData({
       mask: false
     })
   },
-  hidemask: function () {
+  hidemask: function() {
     let that = this;
     that.setData({
       mask: true
     })
   },
-  toplay: function (e) {
+  toplay: function(e) {
     let that = this;
     app.globalData.slist = that.data.slist;
     wx.navigateTo({
       url: '../player/player?sid=' + e.currentTarget.dataset.sid
     })
   },
-  alltoplay: function (e) {
+  alltoplay: function(e) {
     let that = this;
     app.globalData.slist = that.data.slist;
     wx.navigateTo({
       url: '../player/player?sid=' + that.data.slist[0].id
     })
   },
-  tocollect: function (e) {
+  tocollect: function(e) {
     let that = this;
-    app.collect(e, function () {
+    app.collect(e, function() {
       let slist = that.data.slist;
       for (let i = 0; i < slist.length; i++) {
         if (e.currentTarget.dataset.sid == slist[i].id) {
@@ -50,9 +52,9 @@ Page({
       app.globalData.slist = slist;
     });
   },
-  toloadMore: function () {
+  toloadMore: function() {
     let that = this;
-    app.loadMore(that, function () {
+    app.loadMore(that, function() {
       let sparas = {
         page: that.data.page,
         melodyAlbum: that.data.aname,
@@ -60,17 +62,17 @@ Page({
       };
       sparas = JSON.stringify(sparas);
       let oldslist = that.data.slist;
-      app.request('post', 'melody/queryList.do', sparas, function (res) {
+      app.request('post', 'melody/queryList.do', sparas, function(res) {
         let slist = res.data.data.melodyList;
         for (let i = 0; i < slist.length; i++) {
-          slist[i].melodyCoverImage = crurl + slist[i].melodyCoverImage;
-          slist[i].melodyFilePath = crurl + slist[i].melodyFilePath;
+          slist[i].melodyCoverImage = imgrurl + slist[i].melodyCoverImage + "?imageView2/2/w/118/h/118|imageslim";
+          slist[i].melodyFilePath = videorurl + slist[i].melodyFilePath;
           oldslist.push(slist[i]);
         }
         that.setData({
           slist: oldslist
         })
-      }, function () {
+      }, function() {
         wx.showToast({
           title: '曲目列表加载失败',
           icon: 'none'
@@ -78,7 +80,7 @@ Page({
       })
     })
   },
-  onShow: function () {
+  onShow: function() {
     let that = this;
     let options = that.options;
     wx.setNavigationBarTitle({
@@ -93,17 +95,17 @@ Page({
       accountId: wx.getStorageSync('accountId')
     };
     sparas = JSON.stringify(sparas);
-    app.request('post', 'melody/queryList.do', sparas, function (res) {
+    app.request('post', 'melody/queryList.do', sparas, function(res) {
       let slist = res.data.data.melodyList;
       for (let i = 0; i < slist.length; i++) {
-        slist[i].melodyCoverImage = crurl + slist[i].melodyCoverImage;
-        slist[i].melodyFilePath = crurl + slist[i].melodyFilePath;
+        slist[i].melodyCoverImage = imgrurl + slist[i].melodyCoverImage + "?imageView2/2/w/118/h/118|imageslim";
+        slist[i].melodyFilePath = videorurl + slist[i].melodyFilePath;
       }
       that.setData({
         slist: slist,
         pageSize: res.data.pageSize
       })
-    }, function () {
+    }, function() {
       wx.showToast({
         title: '曲目列表加载失败',
         icon: 'none'
@@ -113,13 +115,13 @@ Page({
       id: options.aid
     };
     aparas = JSON.stringify(aparas);
-    app.request('post', 'album/query.do', aparas, function (res) {
+    app.request('post', 'album/query.do', aparas, function(res) {
       let aobj = res.data.data;
-      aobj.albumCoverImage = crurl + aobj.albumCoverImage;
+      aobj.albumCoverImage = imgrurl + aobj.albumCoverImage + "?imageView2/1/w/196/h/196|imageslim";
       that.setData({
         aobj: aobj
       })
-    }, function () {
+    }, function() {
       wx.showToast({
         title: '专辑信息加载失败',
         icon: 'none'
