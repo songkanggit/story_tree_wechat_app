@@ -7,14 +7,14 @@ Page({
       icon: '../../images/jgs.png',
       text: '讲故事'
     }, {
+      icon: '../../images/xzs.png',
+      text: '读绘本'
+    }, {
       icon: '../../images/teg.png',
       text: '听儿歌'
     }, {
-      icon: '../../images/xzs.png',
-      text: '学知识'
-    }, {
       icon: '../../images/dgx.png',
-      text: '读国学'
+      text: '学国学'
     }, {
       icon: '../../images/fl.png',
       text: '搜索'
